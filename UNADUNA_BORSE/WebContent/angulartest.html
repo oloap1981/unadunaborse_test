@@ -1,0 +1,121 @@
+<html ng-app="firstTestModule">
+	<head>
+		<meta charset="UTF-8">
+		<title>Test app for Angular and AmazonWS Lambda 1</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/jquery-ui.css" />
+		<link rel="stylesheet" type="text/css" href="css/login.css" />
+		<link rel="stylesheet" type="text/css" href="css/loader.css" />
+		<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+	    <script type="text/javascript" src="javascripts/jquery-1.8.3.js"></script>
+	    <script type="text/javascript" src="javascripts/jquery-ui.js"></script>
+	    
+	    
+	    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+
+  <!-- Angular Material Library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+	    <script type="text/javascript" src="javascripts/spritespin.js"></script>
+	    <script type="text/javascript" src="javascripts/aws/aws-cognito-sdk.min.js"></script>
+	    <script type="text/javascript" src="javascripts/aws/amazon-cognito-identity.min.js"></script>
+	    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.114.0.min.js"></script>
+	    <script type="text/javascript" src="javascripts/angular/app.js"></script>
+	    
+	</head>
+	<body ng-controller="mioPrimoController as contr">
+		<div>
+			<table>
+				<tr>
+					<td>
+						Tempo di risposta del servizio {{ PostDataResponse }}
+					</td>
+				</tr>
+				<tr>
+					<td>
+						Tempo di risposta totale {{ TotalTime }}
+					</td>
+				</tr>
+			</table>
+			<div id="optionsBlock">
+				Accessorio? <input type="checkbox" id="myCheck" ng-model="accessorio"/>
+				Colore? <select ng-model="coloreScelto" ng-options="x for x in colors"></select>
+				Dimensione? <select ng-model="dimensioneScelta" ng-options="y for y in sizes"></select>
+			</div>
+			
+			<input type="button" value="Send" ng-click="SendData()"/>
+		</div>
+		<div layout="row" layout-sm="column" layout-align="space-around">
+	      <md-progress-circular ng-disabled="!loaderVisible" class="md-hue-2" md-diameter="20px"></md-progress-circular>
+	    </div>
+		<div id="spritespin"></div>
+		<div id="radioPositionBlock">
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="1" ng-change="SelectFrame()"/>
+			  1
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="2" ng-change="SelectFrame()"/>
+			  2
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="3" ng-change="SelectFrame()"/>
+			  3
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="4" ng-change="SelectFrame()"/>
+			  4
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="5" ng-change="SelectFrame()"/>
+			  5
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="6" ng-change="SelectFrame()"/>
+			  6
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="7" ng-change="SelectFrame()"/>
+			  7
+			</label>
+			<label>
+			  <input type="radio" name="response" ng-model="radioSelected" value="8" ng-change="SelectFrame()"/>
+			  8
+			</label>
+		</div>
+		<div id="loginForm">
+			<!-- Button to open the modal login form -->
+			<button onclick="document.getElementById('id01').style.display='block'">Login</button>
+			
+			<!-- The Modal -->
+			<div id="id01" class="modal">
+			  <span onclick="document.getElementById('id01').style.display='none'" class="close" title="Close Modal">&times;</span>
+			
+			  <!-- Modal Content -->
+			  <form class="modal-content animate" action="/action_page.php">
+			    <div class="imgcontainer">
+			      <img src="" alt="Avatar" class="avatar">
+			    </div>
+			
+			    <div class="container">
+			      <label><b>Username</b></label>
+			      <input type="text" placeholder="Enter Username" name="uname" ng-model="usernameLogin" required>
+			
+			      <label><b>Password</b></label>
+			      <input type="password" placeholder="Enter Password" name="psw" ng-model="passwordLogin" required>
+			
+			      <button type="submit">Login</button>
+			      <input type="checkbox" checked="checked"> Remember me
+			    </div>
+			
+			    <div class="container" style="background-color:#f1f1f1">
+			      <button type="button" onclick="document.getElementById('id01').style.display='none'" class="cancelbtn">Cancel</button>
+			      <span class="psw">Forgot <a href="#">password?</a></span>
+			    </div>
+			  </form>
+			</div>			
+		</div>
+	</body>
+</html>
